@@ -6,8 +6,6 @@ namespace ConsoleApp1
 {
     class Program
     {
-        public static int collector = 0;
-
         static void Main(string[] args)
         {
             // int[] inputs = new int[] { 1, 2 };      // answer 3
@@ -35,10 +33,15 @@ namespace ConsoleApp1
             }
 
             // extract score from each item using LINQ
-            collector = (from itm in lst
-                     select itm[1]).ToList().Sum();
+            List<int> scores = (from itm in lst
+                      select itm[1]).ToList();
+            int scoresum = scores.Sum();
 
-            Console.WriteLine($"the answer is {collector}");
+            string scoreStr = string.Join(", ", scores);
+
+            Console.WriteLine($"the answer is {scoresum}");
+            
+            Console.WriteLine($"Candies given: {scoreStr}");
         }
 
         private static int[] comparer2(int[] curr, int[] prev)
